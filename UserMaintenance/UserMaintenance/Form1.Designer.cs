@@ -33,6 +33,7 @@ namespace UserMaintenance
             this.lblFullName = new System.Windows.Forms.Label();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnSaveToFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -69,11 +70,22 @@ namespace UserMaintenance
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnSaveToFile
+            // 
+            this.btnSaveToFile.Location = new System.Drawing.Point(236, 91);
+            this.btnSaveToFile.Name = "btnSaveToFile";
+            this.btnSaveToFile.Size = new System.Drawing.Size(212, 41);
+            this.btnSaveToFile.TabIndex = 6;
+            this.btnSaveToFile.Text = "button1";
+            this.btnSaveToFile.UseVisualStyleBackColor = true;
+            this.btnSaveToFile.Click += new System.EventHandler(this.btnSaveToFile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(462, 225);
+            this.Controls.Add(this.btnSaveToFile);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtFullName);
             this.Controls.Add(this.lblFullName);
@@ -91,6 +103,7 @@ namespace UserMaintenance
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnSaveToFile;
     }
 }
 
