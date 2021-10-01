@@ -27,6 +27,7 @@ namespace UserMaintenance
             listUsers.DisplayMember = "FullName";
 
             btnSaveToFile.Text = Resource1.SaveToFile;
+            btnDelete.Text = Resource1.Delete;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -50,6 +51,13 @@ namespace UserMaintenance
             }
 
             sw.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            User u = new User();
+            u = (User)listUsers.SelectedItem;
+            users.Remove(u);
         }
     }
 }
