@@ -9,7 +9,7 @@ using week08.Abstractions;
 
 namespace week08.Entities
 {
-    public class Ball : Toy
+    public class Ball : Abstractions.Toy
     {
         protected override void DrawImage(Graphics g)
         {
