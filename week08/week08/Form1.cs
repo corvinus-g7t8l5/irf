@@ -70,6 +70,14 @@ namespace week08
                 BallColor = btnColor.BackColor
             };
         }
+        private void btnSelectPresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                BoxColor = btnColorPresent1.BackColor,
+                RibbonColor = btnColorPresent2.BackColor
+            };
+        }
         private void DisplayNext()
         {
             if (_nextToy != null)
@@ -90,5 +98,6 @@ namespace week08
                 return;
             button.BackColor = colorPicker.Color;
         }
+
     }
 }
