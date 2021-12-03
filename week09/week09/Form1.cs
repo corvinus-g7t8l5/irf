@@ -18,15 +18,22 @@ namespace week09
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
         Random rng = new Random(1234);
+
+        List<int> Ferfi = new List<int>();
+        List<int> No = new List<int>();
         public Form1()
         {
             InitializeComponent();
+        }
 
-            Population = GetPopulation(@"C:\Temp\nép.csv");
+        private void Simulation()
+        {
+            if (textBox1.Text == "") return;
+            Population = GetPopulation(textBox1.Text);
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
-
-            for (int year = 2005; year <= 2024; year++)
+            
+            for (int year = 2005; year <= (int)zaroevNumericUpDown.Value; year++)
             {
                 for (int i = 0; i < Population.Count; i++)
                 {
@@ -35,9 +42,11 @@ namespace week09
                 int nbrOfMales = (from x in Population
                                   where x.Gender == Gender.Male && x.IsAlive
                                   select x).Count();
+                Ferfi.Add(nbrOfMales);
                 int nbrOfFemales = (from x in Population
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
+                No.Add(nbrOfFemales);
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales)
                 );
@@ -70,6 +79,15 @@ namespace week09
                     újszülött.Gender = (Gender)(rng.Next(1, 3));
                     Population.Add(újszülött);
                 }
+            }
+        }
+        private void DisplayResult()
+        {
+            for (int year = 2005; year <= (int)zaroevNumericUpDown.Value; year++)
+            {
+                richTextBox1.Text += "Szimulációs év: " + year +
+                    "\n\tFiúk: " + Ferfi[year - 2005] +
+                    "\n\tLányok: " + No[year - 2005] + "\n\n";
             }
         }
         public List<Person> GetPopulation(string csvpath)
@@ -130,5 +148,23 @@ namespace week09
             return deathProbabilities;
         }
 
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            Population.Clear();
+            BirthProbabilities.Clear();
+            DeathProbabilities.Clear();
+            Ferfi.Clear();
+            No.Clear();
+            richTextBox1.Text = "";
+            Simulation();
+            DisplayResult();
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() != DialogResult.OK) return;
+            textBox1.Text = ofd.FileName;
+        }
     }
 }
